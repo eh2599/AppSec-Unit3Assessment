@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spell Checker</title>
+</head>
+<body>
+    <h3>Hello, {{ username }}</h3>
+    <h1>Spell Checker Tool</h1>
+    <h2>Enter the text you would like to check for spelling errors:</h2>
+    <p/>
+    <form name="input" id="input" action="/spell_check" method="POST">
+        <textarea id="inputtext" name="inputtext" rows="4" cols="50"></textarea>
+        <br><br>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <input type="submit" value="Submit">
+    </form>
+    <p><a href='{{ url_for('logout') }}'>Logout</a></p>
+    <p/>
+</body>
+</html>

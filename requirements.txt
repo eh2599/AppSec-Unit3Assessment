@@ -1,0 +1,5 @@
+pytest
+flask_wtf
+Werkzeug
+Flask~=1.1.2
+Flask-Bcrypt
