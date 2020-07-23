@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query Review</title>
+</head>
+<body>
+    <h3>Hello, {{ username }}</h3>
+    <h1>Query Review</h1>
+    <p id="queryid"/>Query id: {{ query.query_id }}<p/>
+    <p id="username"/>Username that submitted query: {{ username }}<p/>
+    <p id="querytext"/>Query text: {{ query.query_text }}<p/>
+    <p id="queryresults"/>Query results: {{ query.query_results }}<p/>
+    <br><br>
+    <p><a href='{{ url_for('logout') }}'>Logout</a></p>
+    <p/>
+</body>
+</html>

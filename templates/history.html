@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query History</title>
+</head>
+<body>
+    <h3>Hello, {{ username }}</h3>
+    <h1>Past Queries</h1>
+    <p id="numqueries"/>Total number of queries: {{ num_queries }}<p/>
+    <br><br>
+    {% for query in queries %}
+    <p id="query{{ query.query_id }}"><a href='{{ url_for('query_review', query_id=query.query_id) }}'>Query {{ query.query_id }}</a></p>
+    {% endfor %}
+    <p><a href='{{ url_for('logout') }}'>Logout</a></p>
+    <p/>
+</body>
+</html>
