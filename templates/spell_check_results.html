@@ -8,7 +8,8 @@
     <h1>Results</h1>
     <p id="textout"/>Entered text: {{ text_to_check }}<p/>
     <p id="misspelled"/>Misspelled words: {{ result }}<p/>
-    <p><a href='{{ url_for('spell_check') }}'>Start over</a></p>
+    <p><a href='{{ url_for('spell_check') }}'>Back to spell checker</a></p>
+    <p><a href='{{ url_for('history') }}'>View your query history</a></p>
     <br><br>
     <p><a href='{{ url_for('logout') }}'>Logout</a></p>
 </body>

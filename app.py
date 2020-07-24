@@ -134,18 +134,26 @@ def spell_check():
             query = Query(query_text=text_to_check,query_results=result,user_id=user.user_id)
             db.session.add(query)
             db.session.commit()
-            return render_template('spell_check_results.html', text_to_check=text_to_check, result=result)
+            return render_template('spell_check_results.html', text_to_check=text_to_check, result=result, user=user)
     else:
         return render_template('not_logged_in.html')
 
 
-@app.route('/history', methods=['GET'])
+@app.route('/history', methods=['GET', 'POST'])
 def history():
     if 'username' in session:
         username = session['username']
-        queries = Query.query.all()
-        num_queries = Query.query.count()
-        return render_template('history.html', queries=queries, num_queries=num_queries, username=username)
+        user = User.query.filter_by(username=username).first()
+        if request.method == 'GET':
+            queries = Query.query.filter_by(user_id=user.user_id).all()
+            num_queries = Query.query.filter_by(user_id=user.user_id).count()
+            return render_template('history.html', queries=queries, num_queries=num_queries, user=user)
+        if request.method == 'POST':
+            query_username = request.values['query_username']
+            query_user = User.query.filter_by(username=query_username).first()
+            queries = Query.query.filter_by(user_id=query_user.user_id)
+            num_queries = Query.query.filter_by(user_id=query_user.user_id).count()
+            return render_template('user_history.html', queries=queries, num_queries=num_queries, query_user=query_user, user=user)
     else:
         return render_template('not_logged_in.html')
 
@@ -154,8 +162,9 @@ def history():
 def query_review(query_id):
     if 'username' in session:
         username = session['username']
+        user = User.query.filter_by(username=username).first()
         query = Query.query.filter_by(query_id=query_id).first()
-        return render_template('query_review.html', query=query, username=username)
+        return render_template('query_review.html', query=query, user=user)
     else:
         return render_template('not_logged_in.html')
 
