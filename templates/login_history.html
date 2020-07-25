@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login History</title>
+</head>
+<body>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    <h3>Hello, {{ user.username }}</h3>
+    {% if user.admin %}
+        <form name="userid" id="userid" action="/login_history" method="POST">
+            Enter the user id for the user whose logins you would like to view: <INPUT SIZE=32 id="login_userid" name="login_userid" TYPE='text'/>
+            <p/>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <button id="userloginbutton" type="submit">Submit</button>
+        </form>
+    {% endif %}
+    <br><br>
+    <p><a href='{{ url_for('spell_check') }}'>Spell Checker Tool</a></p>
+    <p><a href='{{ url_for('logout') }}'>Logout</a></p>
+    <p/>
+</body>
+</html>

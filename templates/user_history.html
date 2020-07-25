@@ -9,7 +9,7 @@
     <h1> {{ query_user.username }}'s Past Queries</h1>
     <p id="numqueries"/>Total number of queries: {{ num_queries }}<p/>
     {% for query in queries %}
-        <p id="query{{ query.query_id }}"><a href='{{ url_for('query_review', query_id=query.query_id) }}'>Query {{ query.query_id }}</a></p>
+        <p id="query{{ query.query_id }}"><a href='{{ url_for('query_review', query_id=query.query_id, query_username=query_user.username) }}'>Query {{ query.query_id }}</a></p>
     {% endfor %}
     <br><br>
     <p><a href='{{ url_for('spell_check') }}'>Spell Checker Tool</a></p>

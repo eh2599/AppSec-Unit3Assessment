@@ -5,7 +5,10 @@
     <title>Spell Checker</title>
 </head>
 <body>
-    <h3>Hello, {{ username }}</h3>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    <h3>Hello, {{ user.username }}</h3>
     <h1>Spell Checker Tool</h1>
     <h2>Enter the text you would like to check for spelling errors:</h2>
     <p/>
@@ -16,6 +19,9 @@
       <input type="submit" value="Submit">
     </form>
     <p><a href='{{ url_for('history') }}'>View query history</a></p>
+    {% if user.admin %}
+    <p><a href='{{ url_for('login_history') }}'>View login history</a></p>
+    {% endif %}
     <p><a href='{{ url_for('logout') }}'>Logout</a></p>
     <p/>
 </body>

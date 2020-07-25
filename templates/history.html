@@ -5,6 +5,9 @@
     <title>Query History</title>
 </head>
 <body>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
     <h3>Hello, {{ user.username }}</h3>
     {% if user.admin %}
         <form name="userquery" id="userquery" action="/history" method="POST">
@@ -18,7 +21,7 @@
         <h1> Your Past Queries</h1>
         <p id="numqueries"/>Total number of queries: {{ num_queries }}<p/>
         {% for query in queries %}
-        <p id="query{{ query.query_id }}"><a href='{{ url_for('query_review', query_id=query.query_id) }}'>Query {{ query.query_id }}</a></p>
+        <p id="query{{ query.query_id }}"><a href='{{ url_for('query_review', query_id=query.query_id, query_username=user.username) }}'>Query {{ query.query_id }}</a></p>
         {% endfor %}
     {% endif %}
     <br><br>
