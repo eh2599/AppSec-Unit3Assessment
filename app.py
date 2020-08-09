@@ -105,7 +105,7 @@ def register():
 
 def check_user_authentication(username, password, phone):
     user = User.query.filter_by(username=username).first()
-    if not user or not bcrypt.check_password_hash(user.password, password):
+    if not user or not bcrypt.check_password_hash(user.password.encode('utf-8'), password.encode('utf-8')):
         return render_template('login_failure.html')
     else:
         if user.phone == phone:

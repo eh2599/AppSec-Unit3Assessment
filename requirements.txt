@@ -2,6 +2,6 @@ pytest
 flask-wtf
 Werkzeug
 Flask~=1.1.2
-flask-bcrypt
+Flask-Bcrypt
 flask-sqlalchemy
 sqlalchemy
