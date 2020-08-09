@@ -6,3 +6,9 @@ services:
       - "8080:5000" 
     volumes:
       - .:/home/spell_check
+    secrets:
+      - secret_key
+
+secrets:
+  secret_key:
+    file: secrets/secret_key.secrets

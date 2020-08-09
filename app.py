@@ -13,10 +13,13 @@ from sqlalchemy import func
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "spellcheckerdatabase.db"))
 
+
 app = Flask(__name__)
+with open('/run/secrets/secret_key') as f:
+    app.config['SECRET_KEY'] = f.readline().strip()
 # Set secret key to randomly generated value
-secret_key = secrets.token_urlsafe(32)
-app.config['SECRET_KEY'] = secret_key
+#secret_key = secrets.token_urlsafe(32)
+#app.config['SECRET_KEY'] = secret_key
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE='Strict',
