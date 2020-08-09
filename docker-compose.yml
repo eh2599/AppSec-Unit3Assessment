@@ -4,14 +4,5 @@ services:
     build: .
     ports:
       - "8080:5000" 
-    secrets:
-      - secret_key
-      - admin_password
     volumes:
       - .:/home/spell_check
-
-secrets:
-  secret_key:
-    file: /run/secrets/secret_key
-  admin_password:
-    file: /run/secrets/admin_password
