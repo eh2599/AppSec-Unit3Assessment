@@ -8,6 +8,12 @@ services:
       - .:/home/spell_check
     secrets:
       - secret_key
+    deploy:
+      resources:
+        limits:
+            cpus: '0.50'
+            memory: 100MB
+      replicas: 4
 
 secrets:
   secret_key:
